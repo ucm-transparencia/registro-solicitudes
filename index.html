@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gráfico Interactivo - Solicitudes</title>
-    <!-- Add any additional library for charts (e.g., Chart.js) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -22,7 +21,7 @@
                     labels: ['Favorable', 'Parcialmente Favorable', 'Desfavorable', 'Inadmitida'],
                     datasets: [{
                         label: 'Cantidad de Solicitudes',
-                        data: [<?php echo $favorables_count; ?>, <?php echo $parciales_count; ?>, <?php echo $desfavorables_count; ?>, <?php echo $inadmitidas_count; ?>],
+                        data: [50, 20, 10, 5],  // Aquí se deben poner los datos de tu archivo Excel
                         backgroundColor: ['#66bb6a', '#ffa726', '#ef5350', '#b71234'],
                         borderColor: ['#4caf50', '#fb8c00', '#e53935', '#d32f2f'],
                         borderWidth: 1
