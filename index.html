@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Solicitudes de Transparencia - UCM</title>
+    <title>Registro de solicitudes de acceso y reclamaciones - UCM</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
@@ -112,14 +112,14 @@
         </div>
         <div id="searchInfo" class="search-info" style="display: none;"></div>
         <div class="download-section">
-            <h3>📥 Descargar Registro Completo:</h3>
+            <h3>📥 Descargar registro completo:</h3>
             <button class="download-btn" id="downloadExcelBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Excel (.xlsx)</button>
             <button class="download-btn" id="downloadCsvBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>CSV</button>
         </div>
         <div class="chart-container"><canvas id="mainChart"></canvas></div>
         <div class="stats-grid" id="statsGrid"></div>
         <div class="table-container">
-            <h2>📄 Detalle Completo de Solicitudes <span id="yearTitle"></span></h2>
+            <h2>📄 Detalle completo de solicitudes de acceso y reclamaciones <span id="yearTitle"></span></h2>
             <div class="table-wrapper">
                 <table id="dataTable">
                     <thead><tr><th>Nº Expte.</th><th>Fecha Entrada</th><th>Solicitante (sólo con consentimiento expreso)</th><th>Resumen de lo Solicitado</th><th>Forma Acceso</th><th>Vía Contacto</th><th>Tiempo Resolución (en días hábiles)</th><th>Sentido Resolución</th><th>Motivo Denegación</th><th>Reclamación CT</th></tr></thead>
@@ -4221,11 +4221,11 @@ function actualizarGrafico() {
 }
 
 function crearGraficoBarras(datos) {
-    return { type: 'bar', data: { labels: ['Favorable', 'Parcialmente Favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ label: 'Número de Solicitudes', data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.7)', 'rgba(155, 137, 66, 0.7)', 'rgba(183, 18, 52, 0.7)', 'rgba(151, 148, 146, 0.7)'], borderColor: ['#28a745', coloresUCM.dorado, coloresUCM.principal, coloresUCM.gris], borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: `Solicitudes de Transparencia ${yearSelect.value}`, font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 5 } } } } };
+    return { type: 'bar', data: { labels: ['Favorable', 'Parcialmente Favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ label: 'Número de Solicitudes', data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.7)', 'rgba(155, 137, 66, 0.7)', 'rgba(183, 18, 52, 0.7)', 'rgba(151, 148, 146, 0.7)'], borderColor: ['#28a745', coloresUCM.dorado, coloresUCM.principal, coloresUCM.gris], borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: `Solicitudes de transparencia ${yearSelect.value}`, font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 5 } } } } };
 }
 
 function crearGraficoPie(datos) {
-    return { type: 'doughnut', data: { labels: ['Favorable', 'Parcialmente Favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.8)', 'rgba(155, 137, 66, 0.8)', 'rgba(183, 18, 52, 0.8)', 'rgba(151, 148, 146, 0.8)'], borderColor: '#fff', borderWidth: 3 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { size: 14 }, padding: 20 } }, title: { display: true, text: `Distribución de Resoluciones ${yearSelect.value}`, font: { size: 18, weight: 'bold' } }, tooltip: { callbacks: { label: function(context) { const total = context.dataset.data.reduce((a, b) => a + b, 0); const percentage = ((context.parsed / total) * 100).toFixed(1); return context.label + ': ' + context.parsed + ' (' + percentage + '%)'; } } } } } };
+    return { type: 'doughnut', data: { labels: ['Favorable', 'Parcialmente favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.8)', 'rgba(155, 137, 66, 0.8)', 'rgba(183, 18, 52, 0.8)', 'rgba(151, 148, 146, 0.8)'], borderColor: '#fff', borderWidth: 3 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { size: 14 }, padding: 20 } }, title: { display: true, text: `Distribución de Resoluciones ${yearSelect.value}`, font: { size: 18, weight: 'bold' } }, tooltip: { callbacks: { label: function(context) { const total = context.dataset.data.reduce((a, b) => a + b, 0); const percentage = ((context.parsed / total) * 100).toFixed(1); return context.label + ': ' + context.parsed + ' (' + percentage + '%)'; } } } } } };
 }
 
 function crearGraficoLinea() {
