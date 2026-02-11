@@ -11,7 +11,7 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e8e8e8 100%); padding: 20px; min-height: 100vh; }
         .container { max-width: 100%; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden; }
         .header { background: linear-gradient(135deg, #b71234 0%, #8b0d27 100%); color: white; padding: 30px; text-align: center; }
-        .header h1 { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
+        .header h1 { font-size: 22px; font-weight: 400; margin-bottom: 10px; }
         .header p { font-size: 16px; opacity: 0.95; }
         .controls { padding: 30px; background: #f8f9fa; border-bottom: 2px solid #e9ecef; }
         .control-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 20px; }
@@ -121,7 +121,7 @@
             <h2>📄 Detalle Completo de Solicitudes <span id="yearTitle"></span></h2>
             <div class="table-wrapper">
                 <table id="dataTable">
-                    <thead><tr><th>Nº Expte.</th><th>Fecha Entrada</th><th>Solicitante</th><th>Resumen de lo Solicitado</th><th>Forma Acceso</th><th>Vía Contacto</th><th>Tiempo Resolución</th><th>Sentido Resolución</th><th>Motivo Denegación</th><th>Reclamación CT</th></tr></thead>
+                    <thead><tr><th>Nº Expte.</th><th>Fecha Entrada</th><th>Solicitante (sólo con consentimiento expreso)</th><th>Resumen de lo Solicitado</th><th>Forma Acceso</th><th>Vía Contacto</th><th>Tiempo Resolución (en días hábiles)</th><th>Sentido Resolución</th><th>Motivo Denegación</th><th>Reclamación CT</th></tr></thead>
                     <tbody id="tableBody"></tbody>
                 </table>
             </div>
