@@ -30,17 +30,17 @@
         .download-btn { padding: 10px 20px; background: linear-gradient(135deg, #9B8942 0%, #8a7a3a 100%); color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
         .download-btn:hover { background: linear-gradient(135deg, #b5a363 0%, #9B8942 100%); box-shadow: 0 4px 12px rgba(155, 137, 66, 0.3); transform: translateY(-2px); }
         .download-btn svg { width: 16px; height: 16px; }
-        .chart-container { padding: 30px; position: relative; height: 500px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; padding: 20px 30px 30px; background: #f8f9fa; }
-        .stat-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); text-align: center; }
+        .chart-container { padding: 15px 30px; position: relative; height: 320px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; padding: 12px 30px 16px; background: #f8f9fa; }
+        .stat-card { background: white; padding: 12px 16px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); text-align: center; }
         .stat-card.favorable { border-left: 4px solid #28a745; }
         .stat-card.parcial { border-left: 4px solid #9B8942; }
         .stat-card.desfavorable { border-left: 4px solid #b71234; }
         .stat-card.inadmision { border-left: 4px solid #979492; }
         .stat-card.total { border-left: 4px solid #007bff; }
-        .stat-card h3 { font-size: 13px; color: #6c757d; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-card p { font-size: 32px; font-weight: 700; color: #2f2f2f; }
-        .stat-card .percentage { font-size: 14px; margin-top: 5px; font-weight: 600; color: #6c757d; }
+        .stat-card h3 { font-size: 11px; color: #6c757d; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-card p { font-size: 24px; font-weight: 700; color: #2f2f2f; }
+        .stat-card .percentage { font-size: 12px; margin-top: 3px; font-weight: 600; color: #6c757d; }
         .table-container { padding: 30px; }
         .table-container h2 { margin-bottom: 20px; color: #2f2f2f; font-size: 20px; }
         .table-wrapper { max-height: 700px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 8px; position: relative; }
@@ -72,16 +72,15 @@
         th:nth-child(10), td:nth-child(10) { width: 6%; }
         .search-info { padding: 10px 30px; background: #fff3cd; border-bottom: 2px solid #ffc107; font-size: 14px; color: #856404; text-align: center; }
         @media (max-width: 1200px) { .table-wrapper { overflow-x: auto; } table { table-layout: auto; } }
-        @media (max-width: 450px) { .header h1 { font-size: 20px; } .control-group { grid-template-columns: 1fr; } .chart-container { height: 300px; padding: 20px; } .download-section { flex-direction: column; align-items: stretch; } .download-btn { width: 100%; justify-content: center; } .table-container { padding: 15px; } table { font-size: 10px; } th, td { padding: 6px 4px; } }
+        @media (max-width: 768px) { .header h1 { font-size: 22px; } .control-group { grid-template-columns: 1fr; } .chart-container { height: 350px; padding: 20px; } .download-section { flex-direction: column; align-items: stretch; } .download-btn { width: 100%; justify-content: center; } .table-container { padding: 15px; } table { font-size: 10px; } th, td { padding: 6px 4px; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="container">
-    <div class="header" style="margin: 0 auto; text-align: center; padding: 10px;">
-        <h1 style="font-size: 22px; margin: 5px 0; padding: 0;">📋 Registro de Solicitudes de Transparencia</h1>
-        <p style="font-size: 14px; margin: 0; padding: 0;">Universidad Complutense de Madrid (2020-2025)</p>
-    </div>
+        <div class="header">
+            <h1>📋 Registro de solicitudes de acceso y reclamaciones</h1>
+            <p>Universidad Complutense de Madrid (2020-2025)</p>
+        </div>
         <div class="controls">
             <div class="control-group">
                 <div class="control-item">
@@ -101,7 +100,7 @@
                 </div>
             </div>
             <div class="control-item">
-                <label>Vista de Gráfico</label>
+                <label>Vista de gráfico</label>
                 <div class="view-toggles">
                     <button class="view-toggle active" data-view="bar">📊 Barras</button>
                     <button class="view-toggle" data-view="pie">⭕ Circular</button>
@@ -122,7 +121,7 @@
             <h2>📄 Detalle completo de solicitudes de acceso y reclamaciones <span id="yearTitle"></span></h2>
             <div class="table-wrapper">
                 <table id="dataTable">
-                    <thead><tr><th>Nº Expte.</th><th>Fecha Entrada</th><th>Solicitante (sólo con consentimiento expreso)</th><th>Resumen de lo Solicitado</th><th>Forma Acceso</th><th>Vía Contacto</th><th>Tiempo Resolución (en días hábiles)</th><th>Sentido Resolución</th><th>Motivo Denegación</th><th>Reclamación CT</th></tr></thead>
+                    <thead><tr><th>Nº Expte.</th><th>Fecha Entrada</th><th>Solicitante</th><th>Resumen de lo Solicitado</th><th>Forma Acceso</th><th>Vía Contacto</th><th>Tiempo Resolución</th><th>Sentido Resolución</th><th>Motivo Denegación</th><th>Reclamación CT</th></tr></thead>
                     <tbody id="tableBody"></tbody>
                 </table>
             </div>
@@ -4200,7 +4199,7 @@ function actualizarEstadisticas() {
     statsGrid.innerHTML = `
         <div class="stat-card total"><h3>Total Solicitudes</h3><p>${datos.total}</p></div>
         <div class="stat-card favorable"><h3>Favorable</h3><p>${datos.favorable}</p><div class="percentage">${((datos.favorable / datos.total) * 100).toFixed(1)}%</div></div>
-        <div class="stat-card parcial"><h3>Parcialmente Favorable</h3><p>${datos.parcialmente_favorable}</p><div class="percentage">${((datos.parcialmente_favorable / datos.total) * 100).toFixed(1)}%</div></div>
+        <div class="stat-card parcial"><h3>Parcialmente favorable</h3><p>${datos.parcialmente_favorable}</p><div class="percentage">${((datos.parcialmente_favorable / datos.total) * 100).toFixed(1)}%</div></div>
         <div class="stat-card desfavorable"><h3>Desfavorable</h3><p>${datos.desfavorable}</p><div class="percentage">${((datos.desfavorable / datos.total) * 100).toFixed(1)}%</div></div>
         <div class="stat-card inadmision"><h3>Inadmisión</h3><p>${datos.inadmision}</p><div class="percentage">${((datos.inadmision / datos.total) * 100).toFixed(1)}%</div></div>
     `;
@@ -4221,11 +4220,11 @@ function actualizarGrafico() {
 }
 
 function crearGraficoBarras(datos) {
-    return { type: 'bar', data: { labels: ['Favorable', 'Parcialmente Favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ label: 'Número de Solicitudes', data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.7)', 'rgba(155, 137, 66, 0.7)', 'rgba(183, 18, 52, 0.7)', 'rgba(151, 148, 146, 0.7)'], borderColor: ['#28a745', coloresUCM.dorado, coloresUCM.principal, coloresUCM.gris], borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: `Solicitudes de transparencia ${yearSelect.value}`, font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 5 } } } } };
+    return { type: 'bar', data: { labels: ['Favorable', 'Parcialmente favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ label: 'Número de solicitudes', data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.7)', 'rgba(155, 137, 66, 0.7)', 'rgba(183, 18, 52, 0.7)', 'rgba(151, 148, 146, 0.7)'], borderColor: ['#28a745', coloresUCM.dorado, coloresUCM.principal, coloresUCM.gris], borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: `Solicitudes de transparencia ${yearSelect.value}`, font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 5 } } } } };
 }
 
 function crearGraficoPie(datos) {
-    return { type: 'doughnut', data: { labels: ['Favorable', 'Parcialmente favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.8)', 'rgba(155, 137, 66, 0.8)', 'rgba(183, 18, 52, 0.8)', 'rgba(151, 148, 146, 0.8)'], borderColor: '#fff', borderWidth: 3 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { size: 14 }, padding: 20 } }, title: { display: true, text: `Distribución de Resoluciones ${yearSelect.value}`, font: { size: 18, weight: 'bold' } }, tooltip: { callbacks: { label: function(context) { const total = context.dataset.data.reduce((a, b) => a + b, 0); const percentage = ((context.parsed / total) * 100).toFixed(1); return context.label + ': ' + context.parsed + ' (' + percentage + '%)'; } } } } } };
+    return { type: 'doughnut', data: { labels: ['Favorable', 'Parcialmente favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ data: [datos.favorable, datos.parcialmente_favorable, datos.desfavorable, datos.inadmision], backgroundColor: ['rgba(40, 167, 69, 0.8)', 'rgba(155, 137, 66, 0.8)', 'rgba(183, 18, 52, 0.8)', 'rgba(151, 148, 146, 0.8)'], borderColor: '#fff', borderWidth: 3 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { size: 14 }, padding: 20 } }, title: { display: true, text: `Distribución de resoluciones ${yearSelect.value}`, font: { size: 18, weight: 'bold' } }, tooltip: { callbacks: { label: function(context) { const total = context.dataset.data.reduce((a, b) => a + b, 0); const percentage = ((context.parsed / total) * 100).toFixed(1); return context.label + ': ' + context.parsed + ' (' + percentage + '%)'; } } } } } };
 }
 
 function crearGraficoLinea() {
@@ -4234,12 +4233,12 @@ function crearGraficoLinea() {
     const parcial = years.map(y => datosSolicitudes[y].parcialmente_favorable);
     const desfavorable = years.map(y => datosSolicitudes[y].desfavorable);
     const inadmision = years.map(y => datosSolicitudes[y].inadmision);
-    return { type: 'line', data: { labels: years, datasets: [{ label: 'Favorable', data: favorable, borderColor: '#28a745', backgroundColor: 'rgba(40, 167, 69, 0.2)', borderWidth: 3, tension: 0.4, fill: true }, { label: 'Parcialmente Favorable', data: parcial, borderColor: coloresUCM.dorado, backgroundColor: 'rgba(155, 137, 66, 0.2)', borderWidth: 3, tension: 0.4, fill: true }, { label: 'Desfavorable', data: desfavorable, borderColor: coloresUCM.principal, backgroundColor: 'rgba(183, 18, 52, 0.2)', borderWidth: 3, tension: 0.4, fill: true }, { label: 'Inadmisión', data: inadmision, borderColor: coloresUCM.gris, backgroundColor: 'rgba(151, 148, 146, 0.2)', borderWidth: 3, tension: 0.4, fill: true }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { font: { size: 12 }, padding: 15 } }, title: { display: true, text: 'Evolución Anual de Solicitudes (2020-2025)', font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 10 } } } } };
+    return { type: 'line', data: { labels: years, datasets: [{ label: 'Favorable', data: favorable, borderColor: '#28a745', backgroundColor: 'rgba(40, 167, 69, 0.2)', borderWidth: 3, tension: 0.4, fill: true }, { label: 'Parcialmente favorable', data: parcial, borderColor: coloresUCM.dorado, backgroundColor: 'rgba(155, 137, 66, 0.2)', borderWidth: 3, tension: 0.4, fill: true }, { label: 'Desfavorable', data: desfavorable, borderColor: coloresUCM.principal, backgroundColor: 'rgba(183, 18, 52, 0.2)', borderWidth: 3, tension: 0.4, fill: true }, { label: 'Inadmisión', data: inadmision, borderColor: coloresUCM.gris, backgroundColor: 'rgba(151, 148, 146, 0.2)', borderWidth: 3, tension: 0.4, fill: true }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { font: { size: 12 }, padding: 15 } }, title: { display: true, text: 'Evolución anual de solicitudes (2020-2025)', font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 10 } } } } };
 }
 
 function crearGraficoPorcentaje(datos) {
     const porcentajes = [((datos.favorable / datos.total) * 100).toFixed(1), ((datos.parcialmente_favorable / datos.total) * 100).toFixed(1), ((datos.desfavorable / datos.total) * 100).toFixed(1), ((datos.inadmision / datos.total) * 100).toFixed(1)];
-    return { type: 'bar', data: { labels: ['Favorable', 'Parcialmente Favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ label: 'Porcentaje (%)', data: porcentajes, backgroundColor: ['rgba(40, 167, 69, 0.7)', 'rgba(155, 137, 66, 0.7)', 'rgba(183, 18, 52, 0.7)', 'rgba(151, 148, 146, 0.7)'], borderColor: ['#28a745', coloresUCM.dorado, coloresUCM.principal, coloresUCM.gris], borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: `Distribución Porcentual ${yearSelect.value}`, font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } } } } };
+    return { type: 'bar', data: { labels: ['Favorable', 'Parcialmente favorable', 'Desfavorable', 'Inadmisión'], datasets: [{ label: 'Porcentaje (%)', data: porcentajes, backgroundColor: ['rgba(40, 167, 69, 0.7)', 'rgba(155, 137, 66, 0.7)', 'rgba(183, 18, 52, 0.7)', 'rgba(151, 148, 146, 0.7)'], borderColor: ['#28a745', coloresUCM.dorado, coloresUCM.principal, coloresUCM.gris], borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, title: { display: true, text: `Distribución porcentual ${yearSelect.value}`, font: { size: 18, weight: 'bold' } } }, scales: { y: { beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } } } } };
 }
 
 function procesarExpediente(expediente, año) {
@@ -4254,6 +4253,11 @@ function procesarExpediente(expediente, año) {
 
 function procesarConsejoTransparencia(texto) {
     if (!texto || texto === 'NO' || texto === '***' || texto === '---' || texto.trim() === '') return 'NO';
+    
+    // Referencia 653/2025 sin enlace (resolución aún no publicada)
+    if (texto.includes('653/2025 CTPD')) {
+        return 'SI (653/2025 CTPD)';
+    }
     
     const textoOriginal = texto;
     const matchRT = texto.match(/(?:SÍ|SI)\s*\(?\[?RT\s*(\d+\/\d+)\]?\)?/i) || texto.match(/RT\s+(\d+\/\d+)/i);
