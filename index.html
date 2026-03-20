@@ -4254,10 +4254,10 @@ function procesarExpediente(expediente, año) {
 function procesarConsejoTransparencia(texto) {
     if (!texto || texto === 'NO' || texto === '***' || texto === '---' || texto.trim() === '') return 'NO';
     
-    // Referencia 653/2025 sin enlace (resolución aún no publicada)
-    if (texto.includes('653/2025 CTPD')) {
-        return 'SI (653/2025 CTPD)';
-    }
+    // Referencia 653/2025 CTPD — con enlace a la resolución publicada
+if (texto.includes('653/2025 CTPD')) {
+    return '<a href="https://www.ucm.es/portaldetransparencia/file/resolucion-653-2025" target="_blank" rel="noopener">SI (653/2025 CTPD)</a>';
+}
     
     const textoOriginal = texto;
     const matchRT = texto.match(/(?:SÍ|SI)\s*\(?\[?RT\s*(\d+\/\d+)\]?\)?/i) || texto.match(/RT\s+(\d+\/\d+)/i);
