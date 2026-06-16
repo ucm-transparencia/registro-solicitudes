@@ -4285,10 +4285,20 @@ if (texto.includes('653/2025 CTPD')) {
     }
     
     if (matchCTPD) {
-        const ref = matchCTPD[1];
-        const url = `https://www.comunidad.madrid/sites/default/files/resolucion_${ref.replace('/', '_')}_ctpd_anonimizada.pdf`;
-        return `<a href="${url}" target="_blank" rel="noopener">SI (${ref} CTPD)</a>`;
+    const ref = matchCTPD[1];
+    const urlsPersonalizadas = {
+        '108/2025': 'https://www.ucm.es/portaldetransparencia/file/resolucion-108-2025-ctpd-anonimizada',
+        '339/2025': 'https://www.ucm.es/portaldetransparencia/file/resolucion-339-2025-ctpd-anonimizada',
+    };
+    if (urlsPersonalizadas[ref]) {
+        return `<a href="${urlsPersonalizadas[ref]}" target="_blank" rel="noopener">SI (${ref} CTPD)</a>`;
     }
+    if (ref === '091/2026') {
+        return `SI (091/2026 CTPD)`;
+    }
+    const url = `https://www.comunidad.madrid/sites/default/files/resolucion_${ref.replace('/', '_')}_ctpd_anonimizada.pdf`;
+    return `<a href="${url}" target="_blank" rel="noopener">SI (${ref} CTPD)</a>`;
+}
     
     return textoOriginal;
 }
